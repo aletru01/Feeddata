@@ -28,7 +28,7 @@ const Index = () => {
   }
   const list = [
     {
-      title: 'signer.signMessage()',
+      title: 'Price 1',
       func: async () => {
         const signer = easyWeb3.getSigner()
         if (signer) {
@@ -42,7 +42,7 @@ const Index = () => {
       },
     },
     {
-      title: 'signer.sendTransaction()',
+      title: 'Price 2',
       func: async () => {
         const signer = easyWeb3.getSigner()
         if (signer) {
@@ -58,7 +58,7 @@ const Index = () => {
       },
     },
     {
-      title: 'dai.balanceOf()',
+      title: 'Verify Consensus',
       func: async () => {
         const dai = getContract()
         if (dai) {
@@ -69,7 +69,7 @@ const Index = () => {
       },
     },
     {
-      title: 'dai.transfer()',
+      title: 'Final Price',
       func: async () => {
         const dai = getContract()
         if (dai) {
