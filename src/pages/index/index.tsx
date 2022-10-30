@@ -29,15 +29,54 @@ const Index = () => {
   const list = [
     {
       title: 'Price 1',
+      func: async () => {
+        const signer = easyWeb3.getSigner()
+        if (signer) {
+          // const signature = await signer.signMessage('Hello World')
+          const message =
+            '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
+          const messageBytes = ethers.utils.arrayify(message)
+          const signature = await signer.signMessage(messageBytes)
+          alert(signature)
+        }
+      },
     },
     {
       title: 'Price 2',
+      func: async () => {
+        const signer = easyWeb3.getSigner()
+        if (signer) {
+          try {
+            await signer.sendTransaction({
+              to: toAddress,
+              value: ethers.utils.parseEther('0.0001'),
+            })
+          } catch (error) {
+            alert(error.message || JSON.stringify(error))
+          }
+        }
+      },
     },
     {
       title: 'Verify Consensus',
+      func: async () => {
+        const dai = getContract()
+        if (dai) {
+          const symbol = await dai.symbol()
+          const rowBalance = await dai.balanceOf(walletInfo.address)
+          alert(symbol + ': ' + rowBalance)
+        }
+      },
     },
     {
       title: 'Final Price',
+      func: async () => {
+        const dai = getContract()
+        if (dai) {
+          const ret = await dai.transfer(toAddress, 99)
+          alert('transfer: ' + JSON.stringify(ret))
+        }
+      },
     },
   ]
   useEffect(() => {
